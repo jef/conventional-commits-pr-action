@@ -1,4 +1,9 @@
-import {createPrComment, deletePrComment, getPullRequest} from './github';
+import {
+  buildMessage,
+  createPrComment,
+  deletePrComment,
+  getPullRequest,
+} from './github';
 import * as conventionalCommitTypes from 'conventional-commit-types';
 import {getInput} from '@actions/core';
 
@@ -33,7 +38,14 @@ export async function lintPullRequest(title: string) {
 
 export async function lint() {
   const pr = await getPullRequest();
+  let errorMessage: string;
   if (!(await lintPullRequest(pr.title))) {
-    throw new Error('pr linting failed. see pull request comment.');
+    if (getInput('comment') !== 'true') {
+      errorMessage = `pr linting failed.\n\n${buildMessage()}`;
+    } else {
+      errorMessage = 'pr linting failed. see pull request conversation.';
+    }
+
+    throw new Error(errorMessage);
   }
 }

@@ -26,15 +26,14 @@ export async function getPullRequest() {
   return pr;
 }
 
-function buildMessage(): string {
+export function buildMessage(): string {
   const header = '## Pull request title linting :rotating_light:\n\n';
   const preface =
     'In order to merge this pull request, the title of the pull request ' +
     'should be prefixed by one of the available types.\n\n';
   const availableTypes = `### Available types:\n\n${getConventionalCommitTypes()}\n\n`;
   const separator = '---\n\n';
-  const examples =
-    `<details>
+  const examples = `<details>
 <summary>Examples</summary>
 
 \`\`\`
@@ -44,7 +43,7 @@ ci: update pull request linter
 style: change format of strings
 \`\`\`
 
-</details>` + '\n\n';
+</details>\n\n`;
   const footer =
     ':tipping_hand_person: For more examples, visit https://www.conventionalcommits.org/en/v1.0.0/#examples.';
 

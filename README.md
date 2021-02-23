@@ -4,6 +4,8 @@ Lints pull requests based on [Conventional Commits v1.0.0](https://www.conventio
 
 Also has the ability to post a comment in the pull request conversation with examples.
 
+![image](https://user-images.githubusercontent.com/12074633/108867820-91325700-75c3-11eb-8820-4b55abe01c35.png)
+
 ## Usage
 
 ```yaml
