@@ -8,7 +8,7 @@ require('./sourcemap-register.js');module.exports =
 "use strict";
 
 Object.defineProperty(exports, "__esModule", ({ value: true }));
-exports.createPrComment = exports.deletePrComment = exports.getPullRequest = void 0;
+exports.createPrComment = exports.deletePrComment = exports.buildMessage = exports.getPullRequest = void 0;
 const github_1 = __nccwpck_require__(438);
 const core_1 = __nccwpck_require__(186);
 const lint_1 = __nccwpck_require__(183);
@@ -48,10 +48,11 @@ ci: update pull request linter
 style: change format of strings
 \`\`\`
 
-</details>` + '\n\n';
+</details>\n\n`;
     const footer = ':tipping_hand_person: For more examples, visit https://www.conventionalcommits.org/en/v1.0.0/#examples.';
     return header + preface + availableTypes + separator + examples + footer;
 }
+exports.buildMessage = buildMessage;
 async function isCommentExists(body) {
     const { data: comments } = await getClient().issues.listComments({
         owner: github_1.context.repo.owner,
@@ -110,6 +111,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.lint = exports.lintPullRequest = exports.getConventionalCommitTypes = void 0;
 const github_1 = __nccwpck_require__(738);
 const conventionalCommitTypes = __nccwpck_require__(355);
+const core_1 = __nccwpck_require__(186);
 const types = Object.keys(conventionalCommitTypes.types);
 function getConventionalCommitTypes() {
     return types
@@ -124,7 +126,9 @@ async function lintPullRequest(title) {
         return new RegExp(`^${type}(\\(.*\\))?!?:.*$`);
     });
     if (!matches.some(regex => regex.test(title))) {
-        await github_1.createPrComment();
+        if (core_1.getInput('comment') === 'true') {
+            await github_1.createPrComment();
+        }
         return false;
     }
     await github_1.deletePrComment();
@@ -133,8 +137,15 @@ async function lintPullRequest(title) {
 exports.lintPullRequest = lintPullRequest;
 async function lint() {
     const pr = await github_1.getPullRequest();
+    let errorMessage;
     if (!(await lintPullRequest(pr.title))) {
-        throw new Error('pr linting failed. see pull request comment.');
+        if (core_1.getInput('comment') !== 'true') {
+            errorMessage = `pr linting failed.\n\n${github_1.buildMessage()}`;
+        }
+        else {
+            errorMessage = 'pr linting failed. see pull request conversation.';
+        }
+        throw new Error(errorMessage);
     }
 }
 exports.lint = lint;
