@@ -15,4 +15,5 @@ jobs:
       - name: Lint pull request title
         uses: ./
         with:
+          comment: false
           token: ${{ secrets.GITHUB_TOKEN }}
