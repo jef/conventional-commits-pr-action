@@ -1,5 +1,6 @@
 import {createPrComment, deletePrComment, getPullRequest} from './github';
 import * as conventionalCommitTypes from 'conventional-commit-types';
+import {getInput} from '@actions/core';
 
 const types = Object.keys(conventionalCommitTypes.types);
 
@@ -19,7 +20,10 @@ export async function lintPullRequest(title: string) {
   });
 
   if (!matches.some(regex => regex.test(title))) {
-    await createPrComment();
+    if (getInput('comment') === 'true') {
+      await createPrComment();
+    }
+
     return false;
   }
 

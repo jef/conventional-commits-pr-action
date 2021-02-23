@@ -110,6 +110,7 @@ Object.defineProperty(exports, "__esModule", ({ value: true }));
 exports.lint = exports.lintPullRequest = exports.getConventionalCommitTypes = void 0;
 const github_1 = __nccwpck_require__(738);
 const conventionalCommitTypes = __nccwpck_require__(355);
+const core_1 = __nccwpck_require__(186);
 const types = Object.keys(conventionalCommitTypes.types);
 function getConventionalCommitTypes() {
     return types
@@ -124,7 +125,9 @@ async function lintPullRequest(title) {
         return new RegExp(`^${type}(\\(.*\\))?!?:.*$`);
     });
     if (!matches.some(regex => regex.test(title))) {
-        await github_1.createPrComment();
+        if (core_1.getInput('comment') === 'true') {
+            await github_1.createPrComment();
+        }
         return false;
     }
     await github_1.deletePrComment();

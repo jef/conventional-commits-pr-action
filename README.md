@@ -2,6 +2,8 @@
 
 Lints pull requests based on [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
 
+Also has the ability to post a comment in the pull request conversation with examples.
+
 ## Usage
 
 ```yaml
@@ -25,7 +27,8 @@ jobs:
 
 ## Inputs
 
-- `token` [**Required**]: Access token to the repository. Usually `GITHUB_TOKEN`.
+- `comment`: Post a comment in the pull request conversation with examples. Default is `true`.
+- `token` [**Required**]: Access token to the repository. Usually `${{ secrets.GITHUB_TOKEN }}`.
 
 ## Outputs
 

@@ -1,6 +1,10 @@
 name: 'conventional-commits-pr-action'
 description: 'Lints a pull request title based on Conventional Commits'
 inputs:
+  comment:
+    required: false
+    description: 'Post a comment in the pull request conversation with examples.'
+    default: "true"
   token:
     required: true
     description: 'Access token to the repository.'
