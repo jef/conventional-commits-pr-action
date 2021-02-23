@@ -1,5 +1,8 @@
 name: 'conventional-commits-pr-action'
 description: 'Lints a pull request title based on Conventional Commits'
+branding:
+  icon: 'align-left'
+  color: 'blue'
 inputs:
   comment:
     required: false
