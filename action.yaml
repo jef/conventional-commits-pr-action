@@ -1,0 +1,9 @@
+name: 'conventional-commits-pr-action'
+description: 'Lints a pull request title based on Conventional Commits'
+inputs:
+  token:
+    required: true
+    description: 'Access token to the repository.'
+runs:
+  using: 'node12'
+  main: 'dist/index.js'
