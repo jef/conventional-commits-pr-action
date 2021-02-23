@@ -22,9 +22,9 @@ on:
       - edited
       - reopened
 jobs:
-  lint:
+  lint-pr:
     name: Lint pull request title
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
     steps:
       - name: Lint pull request title
         uses: jef/conventional-commits-pr-action@v1
