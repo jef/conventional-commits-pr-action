@@ -6,6 +6,11 @@ Also has the ability to post a comment in the pull request conversation with exa
 
 ![image](https://user-images.githubusercontent.com/12074633/108867820-91325700-75c3-11eb-8820-4b55abe01c35.png)
 
+Live examples:
+
+- [With pull request comment](https://github.com/jef/conventional-commits-pr-action/pull/5)
+- [Without pull request comment](https://github.com/jef/conventional-commits-pr-action/pull/4)
+
 ## Usage
 
 ```yaml
