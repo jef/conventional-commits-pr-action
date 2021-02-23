@@ -5,7 +5,7 @@ on:
       - main
 jobs:
   build-tag-release:
-    name: Build, tag, and release Docker image
+    name: Build, tag, and release
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
@@ -18,3 +18,13 @@ jobs:
           release-type: node
           changelog-path: docs/changelog.md
           package-name: streetmerchant
+      - name: Tag major version
+        if: ${{ steps.release.outputs.release_created }}
+        run: |
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git remote add gh-token "https://${{ secrets.GITHUB_TOKEN}}@github.com/google-github-actions/release-please-action.git"
+          git tag -d v${{ steps.release.outputs.major }} || true
+          git push origin :v${{ steps.release.outputs.major }} || true
+          git tag -a v${{ steps.release.outputs.major }} -m "Release v${{ steps.release.outputs.major }}"
+          git push origin v${{ steps.release.outputs.major }}

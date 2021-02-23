@@ -19,6 +19,8 @@ jobs:
     steps:
       - name: Lint pull request title
         uses: jef/conventional-commits-pr-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Inputs
