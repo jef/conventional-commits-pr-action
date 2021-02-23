@@ -2,6 +2,10 @@
 
 Lints pull requests based on [Conventional Commits v1.0.0](https://www.conventionalcommits.org/en/v1.0.0/).
 
+Also has the ability to post a comment in the pull request conversation with examples.
+
+![image](https://user-images.githubusercontent.com/12074633/108867820-91325700-75c3-11eb-8820-4b55abe01c35.png)
+
 ## Usage
 
 ```yaml
@@ -19,11 +23,14 @@ jobs:
     steps:
       - name: Lint pull request title
         uses: jef/conventional-commits-pr-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 ```
 
 ## Inputs
 
-- `token` [**Required**]: Access token to the repository. Usually `GITHUB_TOKEN`.
+- `comment`: Post a comment in the pull request conversation with examples. Default is `true`.
+- `token` [**Required**]: Access token to the repository. Usually `${{ secrets.GITHUB_TOKEN }}`.
 
 ## Outputs
 
