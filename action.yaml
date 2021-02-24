@@ -1,16 +1,16 @@
-name: 'conventional-commits-pr-action'
-description: 'Lints a pull request title based on Conventional Commits'
+name: Convetional Commits Pull Request
+description: Lints a pull request title based on Conventional Commits
 branding:
-  icon: 'align-left'
-  color: 'blue'
+  icon: align-left
+  color: blue
 inputs:
   comment:
     required: false
-    description: 'Post a comment in the pull request conversation with examples.'
+    description: Post a comment in the pull request conversation with examples.
     default: 'true'
   token:
     required: true
-    description: 'Access token to the repository.'
+    description: Access token to the repository.
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: node12
+  main: dist/index.js
