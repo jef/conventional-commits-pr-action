@@ -29,7 +29,7 @@
     "conventional-commit-types": "^3.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "^8.2.0",
+    "@types/mocha": "^8.2.2",
     "@types/node": "^14.14.36",
     "@types/sinon": "^9.0.11",
     "@vercel/ncc": "^0.27.0",
