@@ -32,7 +32,7 @@
     "@types/mocha": "^8.2.2",
     "@types/node": "^15.0.2",
     "@types/sinon": "^10.0.0",
-    "@vercel/ncc": "^0.28.3",
+    "@vercel/ncc": "^0.28.5",
     "c8": "^7.7.2",
     "gts": "^3.1.0",
     "mocha": "^8.3.2",
