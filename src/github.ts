@@ -17,7 +17,7 @@ function getClient(): InstanceType<typeof GitHub> {
 }
 
 export async function getPullRequest() {
-  const {data: pr} = await getClient().pulls.get({
+  const {data: pr} = await getClient().rest.pulls.get({
     owner: context.repo.owner,
     pull_number: context.issue.number,
     repo: context.repo.repo,
@@ -56,7 +56,7 @@ type CommentExists = {
 };
 
 async function isCommentExists(body: string): Promise<CommentExists> {
-  const {data: comments} = await getClient().issues.listComments({
+  const {data: comments} = await getClient().rest.issues.listComments({
     owner: context.repo.owner,
     issue_number: context.issue.number,
     repo: context.repo.repo,
@@ -82,7 +82,7 @@ export async function deletePrComment() {
   const {exists, id} = await isCommentExists(body);
 
   if (exists && id) {
-    await getClient().issues.deleteComment({
+    await getClient().rest.issues.deleteComment({
       owner: context.repo.owner,
       issue_number: context.issue.number,
       repo: context.repo.repo,
@@ -96,7 +96,7 @@ export async function createPrComment() {
   const {exists} = await isCommentExists(body);
 
   if (!exists) {
-    await getClient().issues.createComment({
+    await getClient().rest.issues.createComment({
       owner: context.repo.owner,
       issue_number: context.issue.number,
       repo: context.repo.repo,
