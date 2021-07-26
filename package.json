@@ -30,7 +30,7 @@
   },
   "devDependencies": {
     "@types/mocha": "^8.2.2",
-    "@types/node": "^15.12.2",
+    "@types/node": "^16.4.3",
     "@types/sinon": "^10.0.2",
     "@vercel/ncc": "^0.28.6",
     "c8": "^7.7.2",
