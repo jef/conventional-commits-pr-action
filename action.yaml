@@ -12,5 +12,5 @@ inputs:
     required: true
     description: Access token to the repository.
 runs:
-  using: node12
+  using: node16
   main: dist/index.js
