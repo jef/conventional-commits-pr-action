@@ -16,7 +16,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 12.20.1
+          node-version: "16"
       - name: Setup build cache
         uses: actions/cache@v3
         with:
