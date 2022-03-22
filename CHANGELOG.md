@@ -1,5 +1,12 @@
 # Changelog
 
+### [1.1.1](https://github.com/jef/conventional-commits-pr-action/compare/v1.1.0...v1.1.1) (2022-03-22)
+
+
+### Bug Fixes
+
+* ci version, rebuild dist ([74f2326](https://github.com/jef/conventional-commits-pr-action/commit/74f23260ae52eecbdd9a449612b6fcd3a953e9f0))
+
 ## [1.1.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.0.0...v1.1.0) (2022-03-22)
 
 
