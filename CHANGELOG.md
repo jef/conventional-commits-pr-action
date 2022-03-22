@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.0.0...v1.1.0) (2022-03-22)
+
+
+### Features
+
+* use node16, bump deps ([cc95951](https://github.com/jef/conventional-commits-pr-action/commit/cc959510ec8608ff1d43f15be229d7008f83404e))
+
 ## 1.0.0 (2021-02-23)
 
 
