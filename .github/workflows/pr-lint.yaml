@@ -6,12 +6,10 @@ on:
       - edited
       - reopened
 jobs:
-  lint:
+  lint-pr:
     name: Lint pull request title
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v2
       - name: Lint pull request title
         uses: ./
         with:
