@@ -34,20 +34,24 @@ jobs:
 
 ## Inputs
 
-- `comment`: Post a comment in the pull request conversation with examples. Default is `true`.
-- `token` [**Required**]: Access token to the repository. Usually `${{ secrets.GITHUB_TOKEN }}`.
+### `comment`
 
-## Outputs
+**Optional** Post a comment in the pull request conversation with examples.
 
-None.
+| Default value | `true` |
+|---------------|--------|
+
+### `token`
+
+**Required** Access token to the repository. Usually `${{ secrets.GITHUB_TOKEN }}`.
 
 ## Contributing
 
 There are few npm tasks that will help you in building and packaging. All commands are prefaced by `npm run`.
 
 - `build`: builds the action.
-- `compile`: transpiles TypeScript.
 - `clean`: removes `build` directory.
+- `compile`: transpiles TypeScript.
 - `fix`: fixes lint and format issues.
 - `lint`: runs linter and checks format issues.
 - `start`: runs the action.
