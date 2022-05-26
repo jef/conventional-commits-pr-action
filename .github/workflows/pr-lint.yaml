@@ -10,6 +10,8 @@ jobs:
     name: Lint pull request title
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
       - name: Lint pull request title
         uses: ./
         with:
