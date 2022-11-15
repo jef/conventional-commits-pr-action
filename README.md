@@ -25,6 +25,8 @@ jobs:
   lint-pr:
     name: Lint pull request title
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write # post comments when 'comment' is true
     steps:
       - name: Lint pull request title
         uses: jef/conventional-commits-pr-action@v1
@@ -40,6 +42,8 @@ jobs:
 
 | Default value | `true` |
 |---------------|--------|
+
+**Note**: commenting in the pull request conversation requires that the token is configured with the `pull-requests` permission.
 
 ### `token`
 
