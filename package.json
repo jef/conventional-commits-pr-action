@@ -1,6 +1,6 @@
 {
   "name": "@jef/conventional-commits-pr-action",
-  "version": "1.1.1",
+  "version": "1.2.0",
   "private": true,
   "description": "Lints pull requests based on Conventional Commits and Jira tickets",
   "main": "./src/main.ts",
