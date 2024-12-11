@@ -3,17 +3,15 @@
   "version": "1.1.1",
   "private": true,
   "description": "Lints pull requests based on Conventional Commits and Jira tickets",
-  "main": "build/src/main.js",
+  "main": "./src/main.ts",
   "scripts": {
     "build": "npm run test && ncc build --source-map",
     "compile": "tsc",
     "clean": "gts clean",
     "fix": "gts fix",
     "lint": "gts lint",
-    "prestart": "npm run compile",
-    "start": "node ./build/src/main.js",
-    "pretest": "npm run compile",
-    "test": "c8 mocha build/test/**/test-*.js",
+    "start": "node --experimental-loader=node:ts ./src/main.js",
+    "test": "jest",
     "posttest": "npm run lint"
   },
   "files": [
@@ -25,23 +23,20 @@
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@actions/github": "^5.1.1",
+    "@actions/github": "^6.0.0",
     "conventional-commit-types": "^3.0.0"
   },
   "devDependencies": {
-    "@types/mocha": "^9.1.0",
-    "@types/node": "^17.0.22",
-    "@types/sinon": "^10.0.11",
-    "@vercel/ncc": "^0.33.3",
-    "c8": "^7.11.0",
-    "gts": "^3.1.0",
-    "mocha": "^9.2.2",
-    "prettier": "^2.6.0",
-    "sinon": "^13.0.1",
-    "ts-node": "^10.7.0",
-    "typescript": "^4.6.2"
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.10.2",
+    "@vercel/ncc": "^0.38.3",
+    "gts": "^6.0.2",
+    "jest": "^29.7.0",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
+    "typescript": "^5.7.2"
   },
   "volta": {
-    "node": "16.14.2"
+    "node": "20.18.1"
   }
 }

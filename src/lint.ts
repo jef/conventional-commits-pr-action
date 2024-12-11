@@ -24,28 +24,21 @@ export async function lintPullRequest(title: string) {
     return new RegExp(`^${type}(\\(.*\\))?!?:.*$`);
   });
 
-  if (!matches.some(regex => regex.test(title))) {
-    if (getInput('comment') === 'true') {
-      await createPrComment();
-    }
-
-    return false;
-  }
-
-  await deletePrComment();
-  return true;
+  return matches.some(regex => regex.test(title));
 }
 
 export async function lint() {
   const pr = await getPullRequest();
-  let errorMessage: string;
-  if (!(await lintPullRequest(pr.title))) {
-    if (getInput('comment') !== 'true') {
-      errorMessage = `pr linting failed.\n\n${buildMessage()}`;
-    } else {
-      errorMessage = 'pr linting failed. see pull request conversation.';
+
+  const isPrTitleOk = await lintPullRequest(pr.title);
+
+  if (isPrTitleOk) {
+    await deletePrComment();
+  } else {
+    if (getInput('comment') === 'true') {
+      await createPrComment();
     }
 
-    throw new Error(errorMessage);
+    throw new Error(`pr linting failed.\n\n${buildMessage()}`);
   }
 }
