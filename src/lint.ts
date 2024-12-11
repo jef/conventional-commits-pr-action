@@ -12,7 +12,6 @@ const types = Object.keys(conventionalCommitTypes.types);
 
 export function isBotIgnored() {
   const botsIgnore = getInput('bots_ignore').split(',');
-
   return botsIgnore.includes(context.actor);
 }
 
@@ -41,7 +40,6 @@ export async function lint() {
   }
 
   const pr = await getPullRequest();
-
   const isPrTitleOk = await lintPullRequest(pr.title);
 
   if (isPrTitleOk) {
