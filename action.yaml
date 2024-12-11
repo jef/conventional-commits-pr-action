@@ -4,6 +4,10 @@ branding:
   icon: align-left
   color: blue
 inputs:
+  bots_ignore:
+    required: false
+    description: A list of bots to ignore when linting the pull request title. Can be a comma-separated list.
+    default: ''
   comment:
     required: false
     description: Post a comment in the pull request conversation with examples.

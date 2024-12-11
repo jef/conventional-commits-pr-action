@@ -1,4 +1,11 @@
-import {getConventionalCommitTypes, lintPullRequest} from '../lint';
+import {
+  getConventionalCommitTypes,
+  lintPullRequest,
+  isBotIgnored,
+} from '../lint';
+import {getInput} from '@actions/core';
+
+jest.mock('@actions/core');
 
 describe('getConvetionalCommitTypes tests', () => {
   it('should return types', () => {
@@ -33,5 +40,23 @@ describe('lintPullRequest tests', () => {
     it(`should pass or fail linting ['${args}', '${expected}']`, async () => {
       expect(await lintPullRequest(args)).toBe(expected);
     });
+  });
+});
+
+jest.mock('@actions/github', () => ({
+  context: {
+    actor: 'test-bot',
+  },
+}));
+
+describe('isBotIgnored tests', () => {
+  it('should return true if the bot is in the ignore list', () => {
+    (getInput as jest.Mock).mockReturnValue('test-bot,another-bot');
+    expect(isBotIgnored()).toBe(true);
+  });
+
+  it('should return false if the bot is not in the ignore list', () => {
+    (getInput as jest.Mock).mockReturnValue('another-bot');
+    expect(isBotIgnored()).toBe(false);
   });
 });
