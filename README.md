@@ -21,6 +21,7 @@ on:
       - opened
       - edited
       - reopened
+      - synchronize
 jobs:
   lint-pr:
     name: Lint pull request title
