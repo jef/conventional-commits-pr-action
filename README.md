@@ -37,6 +37,10 @@ jobs:
 
 ## Inputs
 
+### `bots_ignore`
+
+**Optional** A list of bots to ignore when linting the pull request title. Can be a comma-separated list.
+
 ### `comment`
 
 **Optional** Post a comment in the pull request conversation with examples.
