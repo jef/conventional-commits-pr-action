@@ -6,7 +6,11 @@
   },
   "include": [
     "src/**/*.ts",
-    "src/**/*.d.ts",
-    "test/**/*.ts"
+    "src/**/*.d.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "build",
+    "dist"
   ]
 }

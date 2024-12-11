@@ -5,13 +5,16 @@ on:
       - opened
       - edited
       - reopened
+      - synchronize
 jobs:
   lint-pr:
     name: Lint pull request title
     runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Lint pull request title
         uses: ./
         with:
