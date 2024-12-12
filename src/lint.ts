@@ -5,9 +5,15 @@ import {
   getPullRequest,
 } from './github';
 import * as conventionalCommitTypes from 'conventional-commit-types';
-import {getInput} from '@actions/core';
+import {getInput, info} from '@actions/core';
+import {context} from '@actions/github';
 
 const types = Object.keys(conventionalCommitTypes.types);
+
+export function isBotIgnored() {
+  const botsIgnore = getInput('bots_ignore').split(',');
+  return botsIgnore.includes(context.actor);
+}
 
 export function getConventionalCommitTypes(): string {
   return types
@@ -28,8 +34,12 @@ export async function lintPullRequest(title: string) {
 }
 
 export async function lint() {
-  const pr = await getPullRequest();
+  if (isBotIgnored()) {
+    info('Bot is ignored. Skipping linting.');
+    return;
+  }
 
+  const pr = await getPullRequest();
   const isPrTitleOk = await lintPullRequest(pr.title);
 
   if (isPrTitleOk) {
