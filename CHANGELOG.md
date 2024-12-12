@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.1.1...v1.2.0) (2024-12-12)
+
+
+### Features
+
+* bump node, deps, add bot_ignore ([ac8b430](https://github.com/jef/conventional-commits-pr-action/commit/ac8b430aae3be29f1a53b5e84eddb190341b7647))
+
 ## [1.3.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.2.0...v1.3.0) (2024-12-11)
 
 
