@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.2.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.1.1...v1.2.0) (2024-12-12)
+
+
+### Features
+
+* add bots_ignore input ([b83c525](https://github.com/jef/conventional-commits-pr-action/commit/b83c525b5de2dd68824d5a5a478eda8367c20f19))
+* update node, deps, testing ([b584084](https://github.com/jef/conventional-commits-pr-action/commit/b584084f5167268b1884a78958d1ea1139b2c991))
+
 ## [1.3.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.2.0...v1.3.0) (2024-12-11)
 
 
