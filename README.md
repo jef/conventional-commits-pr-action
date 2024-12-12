@@ -36,6 +36,10 @@ jobs:
 
 ## Inputs
 
+### `bots_ignore`
+
+**Optional** A list of bots to ignore when linting the pull request title. Can be a comma-separated list.
+
 ### `comment`
 
 **Optional** Post a comment in the pull request conversation with examples.
@@ -43,7 +47,8 @@ jobs:
 | Default value | `true` |
 |---------------|--------|
 
-**Note**: commenting in the pull request conversation requires that the token is configured with the `pull-requests` permission.
+> [!NOTE]
+> Commenting in the pull request conversation requires that the token is configured with the `pull-requests` permission.
 
 ### `token`
 

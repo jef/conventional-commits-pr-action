@@ -5,9 +5,15 @@ import {
   getPullRequest,
 } from './github';
 import * as conventionalCommitTypes from 'conventional-commit-types';
-import {getInput} from '@actions/core';
+import {getInput, info} from '@actions/core';
+import {context} from '@actions/github';
 
 const types = Object.keys(conventionalCommitTypes.types);
+
+export function isBotIgnored() {
+  const botsIgnore = getInput('bots_ignore').split(',');
+  return botsIgnore.includes(context.actor);
+}
 
 export function getConventionalCommitTypes(): string {
   return types
@@ -24,28 +30,25 @@ export async function lintPullRequest(title: string) {
     return new RegExp(`^${type}(\\(.*\\))?!?:.*$`);
   });
 
-  if (!matches.some(regex => regex.test(title))) {
+  return matches.some(regex => regex.test(title));
+}
+
+export async function lint() {
+  if (isBotIgnored()) {
+    info('Bot is ignored. Skipping linting.');
+    return;
+  }
+
+  const pr = await getPullRequest();
+  const isPrTitleOk = await lintPullRequest(pr.title);
+
+  if (isPrTitleOk) {
+    await deletePrComment();
+  } else {
     if (getInput('comment') === 'true') {
       await createPrComment();
     }
 
-    return false;
-  }
-
-  await deletePrComment();
-  return true;
-}
-
-export async function lint() {
-  const pr = await getPullRequest();
-  let errorMessage: string;
-  if (!(await lintPullRequest(pr.title))) {
-    if (getInput('comment') !== 'true') {
-      errorMessage = `pr linting failed.\n\n${buildMessage()}`;
-    } else {
-      errorMessage = 'pr linting failed. see pull request conversation.';
-    }
-
-    throw new Error(errorMessage);
+    throw new Error(`pr linting failed.\n\n${buildMessage()}`);
   }
 }

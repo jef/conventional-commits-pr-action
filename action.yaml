@@ -1,9 +1,13 @@
-name: Convetional Commits Pull Request
+name: Conventional Commits Pull Request
 description: Lints a pull request title based on Conventional Commits
 branding:
   icon: align-left
   color: blue
 inputs:
+  bots_ignore:
+    required: false
+    description: A list of bots to ignore when linting the pull request title. Can be a comma-separated list.
+    default: ''
   comment:
     required: false
     description: Post a comment in the pull request conversation with examples.
@@ -12,5 +16,5 @@ inputs:
     required: true
     description: Access token to the repository.
 runs:
-  using: node16
+  using: node20
   main: dist/index.js
