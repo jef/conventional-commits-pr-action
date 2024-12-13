@@ -18,7 +18,7 @@ jobs:
         with:
           node-version: "16"
       - name: Setup build cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         with:
           path: '**/node_modules'
           key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
