@@ -27,7 +27,7 @@ export function getConventionalCommitTypes(): string {
 
 export async function lintPullRequest(title: string) {
   const matches = types.map(type => {
-    return new RegExp(`^${type}(\\(.*\\))?!?:.*$`);
+    return new RegExp(`^${type}(\\(.+\\))?!?:.+$`);
   });
 
   return matches.some(regex => regex.test(title));
