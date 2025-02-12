@@ -1,17 +1,18 @@
-name: Pull Request Linter
+name: Pull Request Title Linter
 on:
   pull_request:
     types:
       - opened
       - edited
       - reopened
+      - synchronize
 jobs:
-  lint-pr:
+  pr_lint:
     name: Lint pull request title
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Lint pull request title
         uses: ./
         with:
