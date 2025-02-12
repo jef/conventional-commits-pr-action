@@ -14,15 +14,16 @@ Live examples:
 ## Usage
 
 ```yaml
-name: Pull Request Linter
+name: Pull Request Title Linter
 on:
   pull_request:
     types:
       - opened
       - edited
       - reopened
+      - synchronize
 jobs:
-  lint-pr:
+  pr_lint:
     name: Lint pull request title
     runs-on: ubuntu-latest
     permissions:
@@ -32,6 +33,7 @@ jobs:
         uses: jef/conventional-commits-pr-action@v1
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
+
 ```
 
 ## Inputs
