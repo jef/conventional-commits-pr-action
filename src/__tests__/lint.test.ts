@@ -34,6 +34,10 @@ describe('lintPullRequest tests', () => {
     {args: 'feats: test', expected: false},
     {args: '(feat): test', expected: false},
     {args: 'test', expected: false},
+    {args: 'feat(): test', expected: false},
+    {args: 'feat:', expected: false},
+    {args: 'feat():', expected: false},
+    {args: 'feat(test):', expected: false},
   ];
 
   tests.forEach(({args, expected}) => {
