@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.1](https://github.com/jef/conventional-commits-pr-action/compare/v1.2.0...v1.2.1) (2025-02-12)
+
+
+### Bug Fixes
+
+* fail missing scope ([#251](https://github.com/jef/conventional-commits-pr-action/issues/251)) ([e187277](https://github.com/jef/conventional-commits-pr-action/commit/e187277687d2af590ac3f692c786ad2d709a44f5))
+
 ## [1.2.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.1.1...v1.2.0) (2024-12-12)
 
 
