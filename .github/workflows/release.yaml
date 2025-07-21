@@ -19,5 +19,7 @@ jobs:
       - name: Tag major version
         if: ${{ steps.release.outputs.release_created }}
         run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
           git tag -a v${{ steps.release.outputs.new_version }} -m "Release v${{ steps.release.outputs.new_version }}"
           git push origin v${{ steps.release.outputs.new_version }}
