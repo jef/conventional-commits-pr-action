@@ -29,7 +29,6 @@
     "useDefineForClassFields": true,
     "forceConsistentCasingInFileNames": true,
     "skipLibCheck": true,
-    "sourceMap": true
   },
   "include": [
     "src/**/*.ts"

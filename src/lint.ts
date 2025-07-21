@@ -4,11 +4,9 @@ import {
   deletePrComment,
   getPullRequest,
 } from "./github.js";
-import * as conventionalCommitTypes from "conventional-commit-types";
 import { getInput, info } from "@actions/core";
 import { context } from "@actions/github";
-
-const types = Object.keys(conventionalCommitTypes.types);
+import { types } from "./conventional-commit-types.js";
 
 export function isBotIgnored() {
   const botsIgnore = getInput("bots_ignore").split(",");
@@ -16,11 +14,9 @@ export function isBotIgnored() {
 }
 
 export function getConventionalCommitTypes(): string {
-  return types
+  return Object.keys(types)
     .map((type) => {
-      return `- **${type}**: ${
-        conventionalCommitTypes.types[type].description as string
-      }`;
+      return `- **${type}**: ${types[type as keyof typeof types].description as string}`;
     })
     .join("\n");
 }
@@ -31,7 +27,7 @@ export async function lintPullRequest(title: string) {
     ? new RegExp(subjectPatternInput)
     : null;
 
-  const matches = types.map((type) => {
+  const matches = Object.keys(types).map((type) => {
     return new RegExp(`^${type}(\\(.+\\))?!?:.+$`);
   });
 
