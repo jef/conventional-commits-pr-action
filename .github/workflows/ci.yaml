@@ -36,6 +36,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Check if bundled
         run: |
@@ -46,7 +48,6 @@ jobs:
 
       - name: Check if dist/index.js is updated in PR
         run: |
-          git fetch origin ${{ github.base_ref }}
           if ! git diff --name-only origin/${{ github.base_ref }}...HEAD | grep -q '^dist/index.js$'; then
             echo "dist/index.js was not updated in this PR. Please update the bundle.";
             exit 1;
