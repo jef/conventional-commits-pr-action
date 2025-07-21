@@ -1,8 +1,10 @@
 name: Release
+
 on:
   push:
     branches:
       - main
+
 jobs:
   build-tag-release:
     name: Build, tag, and release
@@ -10,16 +12,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup release please
         uses: googleapis/release-please-action@v3
         id: release
         with:
           release-type: node
           package-name: conventional-commits-pr-action
+
       - name: Tag major version
         if: ${{ steps.release.outputs.release_created }}
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git tag -a v${{ steps.release.outputs.new_version }} -m "Release v${{ steps.release.outputs.new_version }}"
-          git push origin v${{ steps.release.outputs.new_version }}
+          git config user.name github-actions[bot]
+          git config user.email 41898282+github-actions[bot]@users.noreply.github.com
+          git tag -d v${{ steps.release.outputs.major }}
+          git push origin :v${{ steps.release.outputs.major }} || true
