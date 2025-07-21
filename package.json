@@ -25,11 +25,11 @@
   "scripts": {
     "test": "vitest",
     "test:run": "vitest run",
-    "build": "tsc",
     "dev": "tsx src/index.ts",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
-    "bundle": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript"
+    "typecheck": "tsc --noEmit",
+    "build": "npm run typecheck && rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
