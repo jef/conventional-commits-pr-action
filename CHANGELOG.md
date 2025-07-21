@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/jef/conventional-commits-pr-action/compare/v1.2.1...v1.3.0) (2025-07-21)
+
+
+### Features
+
+* implement subject pattern ([#254](https://github.com/jef/conventional-commits-pr-action/issues/254)) ([3eb7399](https://github.com/jef/conventional-commits-pr-action/commit/3eb7399ab767df153c8499d9dccf7af11eabb438))
+
 ## [1.2.1](https://github.com/jef/conventional-commits-pr-action/compare/v1.2.0...v1.2.1) (2025-02-12)
 
 
