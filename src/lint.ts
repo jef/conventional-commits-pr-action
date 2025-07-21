@@ -21,24 +21,26 @@ export function getConventionalCommitTypes(): string {
     .join("\n");
 }
 
-export async function lintPullRequest(title: string) {
+export async function isConventionalCommitTitleValid(
+  title: string,
+): Promise<boolean> {
   const subjectPatternInput = getInput("subject_pattern");
   const subjectPattern = subjectPatternInput
     ? new RegExp(subjectPatternInput)
     : null;
 
-  const matches = Object.keys(types).map((type) => {
-    return new RegExp(`^${type}(\\(.+\\))?!?:.+$`);
-  });
+  const typeRegexes = Object.keys(types).map(
+    (type) => new RegExp(`^${type}(\\(.+\\))?!?:\\s?.+$`),
+  );
 
-  const matchedType = matches.find((regex) => regex.test(title));
-  if (!matchedType) return false;
+  const hasValidType = typeRegexes.some((regex) => regex.test(title));
+  if (!hasValidType) return false;
 
   if (subjectPattern) {
-    const match = title.match(/^.+?:\s*(.+)$/);
-    if (!match || !match[1]) return false;
+    const subjectMatch = title.match(/^.+?:\s*(.+)$/);
+    if (!subjectMatch || !subjectMatch[1]) return false;
 
-    const subject = match[1];
+    const subject = subjectMatch[1];
     return subjectPattern.test(subject);
   }
 
@@ -52,7 +54,7 @@ export async function lint() {
   }
 
   const pr = await getPullRequest();
-  const isPrTitleOk = await lintPullRequest(pr.title);
+  const isPrTitleOk = await isConventionalCommitTitleValid(pr.title);
 
   if (isPrTitleOk) {
     await deletePrComment();

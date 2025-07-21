@@ -1,6 +1,6 @@
 import {
   getConventionalCommitTypes,
-  lintPullRequest,
+  isConventionalCommitTitleValid,
   isBotIgnored,
 } from "./lint.js";
 import { context } from "@actions/github";
@@ -27,7 +27,7 @@ describe("getConvetionalCommitTypes tests", () => {
   });
 });
 
-describe("lintPullRequest tests", () => {
+describe("isConventionalCommitTitleValid tests", () => {
   const tests = [
     { args: "feat: test", expected: true },
     { args: "feat(test): test", expected: true },
@@ -42,7 +42,7 @@ describe("lintPullRequest tests", () => {
 
   tests.forEach(({ args, expected }) => {
     it(`should pass or fail linting ['${args}', '${expected}']`, async () => {
-      expect(await lintPullRequest(args)).toBe(expected);
+      expect(await isConventionalCommitTitleValid(args)).toBe(expected);
     });
   });
 
@@ -54,22 +54,30 @@ describe("lintPullRequest tests", () => {
     it("should pass if subject matches pattern", async () => {
       vi.spyOn(core, "getInput").mockReturnValue("matching");
 
-      expect(await lintPullRequest(`feat: matching`)).toBe(true);
-      expect(await lintPullRequest(`feat(test): matching`)).toBe(true);
+      expect(await isConventionalCommitTitleValid(`feat: matching`)).toBe(true);
+      expect(await isConventionalCommitTitleValid(`feat(test): matching`)).toBe(
+        true,
+      );
     });
 
     it("should fail if subject does not match pattern", async () => {
       vi.spyOn(core, "getInput").mockReturnValue("not-matching");
 
-      expect(await lintPullRequest(`feat: matching`)).toBe(false);
-      expect(await lintPullRequest(`feat(test): matching`)).toBe(false);
+      expect(await isConventionalCommitTitleValid(`feat: matching`)).toBe(
+        false,
+      );
+      expect(await isConventionalCommitTitleValid(`feat(test): matching`)).toBe(
+        false,
+      );
     });
 
     it("should handle empty subject pattern", async () => {
       vi.spyOn(core, "getInput").mockReturnValue("");
 
-      expect(await lintPullRequest("feat: test")).toBe(true);
-      expect(await lintPullRequest("feat(test): test")).toBe(true);
+      expect(await isConventionalCommitTitleValid("feat: test")).toBe(true);
+      expect(await isConventionalCommitTitleValid("feat(test): test")).toBe(
+        true,
+      );
     });
 
     it("should handle complex regex", async () => {
@@ -77,8 +85,12 @@ describe("lintPullRequest tests", () => {
         "[a-z]{1,5}[0-9]{1,3}[!@#]HELLO",
       );
 
-      expect(await lintPullRequest("feat: ab11@HELLO")).toBe(true);
-      expect(await lintPullRequest("feat(test): ddd999!HELLO")).toBe(true);
+      expect(await isConventionalCommitTitleValid("feat: ab11@HELLO")).toBe(
+        true,
+      );
+      expect(
+        await isConventionalCommitTitleValid("feat(test): ddd999!HELLO"),
+      ).toBe(true);
     });
   });
 });
