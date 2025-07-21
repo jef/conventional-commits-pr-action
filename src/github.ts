@@ -8,9 +8,9 @@ let once = false;
 
 function getClient(): InstanceType<typeof GitHub> {
   if (once) return octokit;
-  let token = getInput("token");
+  const token = getInput("token") || process.env["GITHUB_TOKEN"] || "";
   if (!token) {
-    token = process.env["GITHUB_TOKEN"] || "";
+    throw new Error("GitHub token is required but not provided.");
   }
   setSecret(token);
 

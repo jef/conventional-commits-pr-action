@@ -15,6 +15,7 @@ inputs:
   token:
     required: false
     description: Access token to the repository. If not set, the action will use the default GitHub Actions token at runtime.
+    default: ${{ github.token }}
   subject_pattern:
     required: false
     description: A regex pattern to validate the subject of the commit message.
