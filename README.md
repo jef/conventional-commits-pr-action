@@ -31,9 +31,6 @@ jobs:
     steps:
       - name: Lint pull request title
         uses: jef/conventional-commits-pr-action@v1
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-
 ```
 
 ## Inputs
@@ -47,23 +44,21 @@ jobs:
 **Optional** Post a comment in the pull request conversation with examples.
 
 | Default value | `true` |
-|---------------|--------|
+| ------------- | ------ |
 
 > [!NOTE]
 > Commenting in the pull request conversation requires that the token is configured with the `pull-requests` permission.
 
 ### `token`
 
-**Required** Access token to the repository. Usually `${{ secrets.GITHUB_TOKEN }}`.
+**Optional** Access token to the repository.
 
-## Contributing
+| Default value | `${{ github.token }}` |
+| ------------- | --------------------- |
 
-There are few npm tasks that will help you in building and packaging. All commands are prefaced by `npm run`.
+### `subject_pattern`
 
-- `build`: builds the action.
-- `clean`: removes `build` directory.
-- `compile`: transpiles TypeScript.
-- `fix`: fixes lint and format issues.
-- `lint`: runs linter and checks format issues.
-- `start`: runs the action.
-- `test`: tests the action.
+**Optional** A regular expression pattern to validate the subject of the pull request title.
+
+| Default value | ``  |
+| ------------- | --- |

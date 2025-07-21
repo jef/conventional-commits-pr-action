@@ -15,5 +15,3 @@ jobs:
         uses: actions/checkout@v4
       - name: Lint pull request title
         uses: ./
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}

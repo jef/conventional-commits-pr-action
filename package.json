@@ -1,42 +1,58 @@
 {
   "name": "@jef/conventional-commits-pr-action",
   "version": "1.2.1",
-  "private": true,
   "description": "Lints pull requests based on Conventional Commits and Jira tickets",
-  "main": "./src/main.ts",
-  "scripts": {
-    "build": "npm run test && ncc build --source-map",
-    "compile": "tsc",
-    "clean": "gts clean",
-    "fix": "gts fix",
-    "lint": "gts lint",
-    "start": "node --experimental-loader=node:ts ./src/main.ts",
-    "test": "jest",
-    "posttest": "npm run lint"
+  "license": "MIT",
+  "repository": "jef/conventional-commits-pr-action",
+  "funding": "https://github.com/sponsors/jef",
+  "author": {
+    "name": "Jef LeCompte",
+    "url": "https://jef.buzz"
+  },
+  "type": "module",
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    }
   },
   "files": [
     "dist"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/jef/conventional-commits-pr-action.git"
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "test": "vitest",
+    "test:run": "vitest run",
+    "build": "tsc",
+    "dev": "tsx src/index.ts",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "bundle": "rollup --config rollup.config.ts --configPlugin @rollup/plugin-typescript"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
-    "@actions/github": "^6.0.0",
-    "conventional-commit-types": "^3.0.0"
+    "@actions/github": "^6.0.1"
   },
   "devDependencies": {
-    "@types/jest": "^29.5.14",
-    "@types/node": "^22.13.1",
-    "@vercel/ncc": "^0.38.3",
-    "gts": "^6.0.2",
-    "jest": "^29.7.0",
-    "prettier": "^3.5.0",
-    "ts-jest": "^29.2.5",
-    "typescript": "^5.7.3"
+    "@eslint/js": "^9.31.0",
+    "@rollup/plugin-commonjs": "^28.0.6",
+    "@rollup/plugin-node-resolve": "^16.0.1",
+    "@rollup/plugin-typescript": "^12.1.4",
+    "@types/node": "^24.0.15",
+    "eslint": "^9.31.0",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^16.3.0",
+    "prettier": "^3.6.2",
+    "rollup": "^4.45.1",
+    "tslib": "^2.8.1",
+    "tsx": "^4.20.3",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.37.0",
+    "vitest": "^3.2.4"
   },
   "volta": {
-    "node": "20.18.3"
+    "node": "22.17.1"
   }
 }
