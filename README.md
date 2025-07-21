@@ -51,7 +51,7 @@ jobs:
 
 ### `token`
 
-**Optional** Access token to the repository. Uses `${{ github.token }}` by default.
+**Optional** Access token to the repository. If not set, the action will use the default GitHub Actions token at runtime.
 
 ### `subject_pattern`
 
