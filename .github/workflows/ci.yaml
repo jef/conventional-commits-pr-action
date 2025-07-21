@@ -1,20 +1,31 @@
 name: Continuous Integration
+
 on:
   pull_request:
     branches:
       - main
+
 jobs:
-  build_test_lint:
-    name: Build, test, and lint
+  build-lint-test:
+    name: Build, Lint, and Test
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version-file: package.json
+
       - name: Install dependencies
         run: npm ci
+
+      - name: Build
+        run: npm run build
+
+      - name: Lint
+        run: npm run lint
+
       - name: Test
-        run: npm run test
+        run: npm run test:run

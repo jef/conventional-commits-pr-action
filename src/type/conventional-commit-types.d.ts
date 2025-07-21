@@ -1,1 +1,1 @@
-declare module 'conventional-commit-types';
+declare module "conventional-commit-types";

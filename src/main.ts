@@ -1,5 +1,5 @@
-import {lint} from './lint';
-import {setFailed} from '@actions/core';
+import { lint } from "./lint.js";
+import { setFailed } from "@actions/core";
 
 /**
  * Entrypoint for action.
