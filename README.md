@@ -60,5 +60,5 @@ jobs:
 
 **Optional** A regular expression pattern to validate the subject of the pull request title.
 
-| Default value | ``  |
+| Default value | (empty)  |
 | ------------- | --- |
