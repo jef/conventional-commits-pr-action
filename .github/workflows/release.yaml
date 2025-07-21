@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  build_tag_release:
+  build-tag-release:
     name: Build, tag, and release
     runs-on: ubuntu-latest
     steps:
