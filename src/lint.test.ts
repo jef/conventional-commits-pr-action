@@ -7,7 +7,7 @@ import { context } from "@actions/github";
 import * as core from "@actions/core";
 import { beforeEach, afterEach, describe, expect, it, vi } from "vitest";
 
-describe("getConvetionalCommitTypes tests", () => {
+describe("getConventionalCommitTypes tests", () => {
   it("should return types", () => {
     const types = getConventionalCommitTypes();
 
