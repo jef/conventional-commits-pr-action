@@ -8,7 +8,10 @@ let once = false;
 
 function getClient(): InstanceType<typeof GitHub> {
   if (once) return octokit;
-  const token = getInput("token") || process.env["GITHUB_TOKEN"] || "";
+  let token = getInput("token");
+  if (!token) {
+    token = process.env["GITHUB_TOKEN"] || "";
+  }
   setSecret(token);
 
   octokit = getOctokit(token);
